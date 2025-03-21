@@ -76,3 +76,13 @@ src/
 - GitHub repository link
 - Working Angular app
 - README.md with project setup instructions, features, and known limitations
+
+- 📂 Starter Boilerplate 
+
+You will find a starter boilerplate in this repository to help you get started. It includes:
+
+Predefined folder structure
+
+Placeholder components and services
+
+Sample README and configuration files
