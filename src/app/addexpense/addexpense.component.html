@@ -1,0 +1,23 @@
+<h3 class="text-center">ADD Expense</h3>
+<form class="mx-auto" style="max-width: 500px;">
+  <div class="border p-3">
+    <div class="form-group">
+      <label for="expense">Expense: </label>
+      <input type="text" class="form-control" id="expense" placeholder="Name of Expense" formControlName="name">
+    </div>
+    <div class="form-group">
+        <label for="price">Price (€): </label>
+        <input type="number" class="form-control" id="price" min="1" placeholder="Enter price" formControlName="price">
+    </div>
+    <div class="form-group">
+      <label for="category">Category: </label>
+      <select class="form-control form-control-sm" id="category" formControlName="category">
+        <option>Food</option>
+        <option>Travel</option>
+        <option>Utilities</option>
+        <option>Others</option>
+      </select>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
