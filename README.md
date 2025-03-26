@@ -1,59 +1,79 @@
-# AngularProjectTraningStarter
+@ -0,0 +1,78 @@
+# Angular Assessment Project: Expense Manager App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## 🎯 Objective
+Build a functional Expense Manager App using Angular that demonstrates key frontend development skills in a real-world scenario.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📌 Project Requirements
 
-```bash
-ng serve
+### 🔸 Core Features (Mandatory)
+- Add New Expense (Form with validation)
+- Edit Existing Expense
+- Delete Expense
+- View Expense List (Table or Card layout)
+- Filter Expenses by Category and/or Date Range
+- Categorize Expenses (e.g., Food, Travel, Utilities, Others)
+- View Dashboard with total expenses summary
+- Use Angular Routing:
+  - `/dashboard`
+  - `/expenses`
+  - `/add-expense`
+  - `/edit-expense/:id`
+
+### 🔸 Technical Expectations
+- Use **Angular Reactive Forms** for Add/Edit Expense
+- Create and inject **services** for handling data (ExpenseService, CategoryService)
+- Use **RxJS Observables** where applicable
+- Structure code using **feature modules** (e.g., ExpenseModule, DashboardModule)
+- Apply **form validation rules**
+- Use clean and reusable **components** and **pipes** if needed
+
+---
+
+## 🧰 Tools & Libraries
+- Angular CLI
+- Angular Forms (Reactive)
+- Angular Router
+- RxJS
+- Optionally: ngx-charts, Bootstrap/Tailwind/Material
+
+---
+
+## 📁 Suggested Folder Structure
+```
+src/
+|-- app/
+|   |-- core/
+|   |-- shared/
+|   |-- expenses/
+|   |   |-- components/
+|   |   |-- services/
+|   |-- dashboard/
+|   |-- auth/ (optional)
+|   |-- app-routing.module.ts
+|   |-- app.module.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## ✅ Evaluation Checklist
+| Criteria                          | Weight | Notes                                                 |
+| --------------------------------- | ------ | ----------------------------------------------------- |
+| Component & Module Structure      | 10     | Clean separation and modularity                       |
+| Form Implementation & Validation  | 10     | Reactive forms, good validation logic                 |
+| Routing & Navigation              | 10     | Routes are defined and working properly               |
+| Use of Services & DI              | 10     | Expense and category logic abstracted from components |
+| Observables/RxJS Usage            | 10     | Usage of RxJS in filtering, services, etc.            |
+| Code Quality & Clean Architecture | 10     | Maintainable, readable, reusable code                 |
+| UI/UX Design                      | 10     | Responsive, user-friendly interface                   |
+| Unit Testing                      | 10     | Coverage and test structure                           |
+| Git Practices                     | 10     | Commit messages, branches, README                     |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📤 Deliverables
+- GitHub repository link
+- Working Angular app
+- README.md with project setup instructions, features, and known limitations
