@@ -6,42 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Price Table</title>
     <style>
+     
         table {
-            width: 50%;
-            border-collapse: collapse;
+          margin-top: 10px;
         }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
+        h1 {
+          text-align: center;
         }
     </style>
 </head>
 
 <body>
+  <h1>My Expenses</h1>
+  <table class="table table-dark" id="priceTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price(€)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of expenses" [hidden]="selectedCategory && expense.category !== selectedCategory">
+        <td>{{ expense.name }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.price }}€</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Total</td>
+        <td id="totalPrice">{{ getTotalPrice() }}€</td>
+      </tr>
+    </tfoot>
+  </table>
 
-    <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>A</td>
-          </tr>
-          <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>A</td>
-          </tr>
-        </tbody>
-    </table>
+  <script>
+    function calculateTotal() {
+        const table = document.getElementById('priceTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        let total = 0;
+
+        for (let i = 0; i < rows.length; i++) {
+            const price = parseFloat(rows[i].getElementsByTagName('td')[2].textContent);
+            total += price;
+        }
+
+        document.getElementById('totalPrice').textContent = total;
+    }
+
+    calculateTotal();
+  /*script>
+
+  <div>
+    <button onclick="redirectToAdd()">Add</button>
+    <button onclick="redirectToEdit()">Edit</button>
+    <button onclick="toggleFilters()">Filters</button>
+  </div>
+
+  <div id="filters" style="display: none;">
+    <ul>
+      <li onclick="filterByCategory('category1')">Category 1</li>
+      <li onclick="filterByCategory('category2')">Category 2</li>
+      <li onclick="filterByCategory('category3')">Category 3</li>
+    </ul>
+  </div>
+
+  <script>
+    let showFilters = false;
+
+    function redirectToAdd() {
+        // Add your redirection logic here
+    }
+
+    function redirectToEdit() {
+        // Add your redirection logic here
+    }
+
+    function toggleFilters() {
+        showFilters = !showFilters;
+        document.getElementById('filters').style.display = showFilters ? 'block' : 'none';
+    }
+
+    function filterByCategory(category) {
+        // Add your filtering logic here
+    }
+    */</script>
+</body>
     <button><a routerLink="/addexpense">Add Expense</a></button>

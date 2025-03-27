@@ -21,6 +21,10 @@ export class AddexpenseComponent {
       price: ['', Validators.required],
       category: ['']
     });
+
+     // Load existing expenses from localStorage
+     const storedExpenses = localStorage.getItem('expenses');
+     this.expenses = storedExpenses ? JSON.parse(storedExpenses) : [];
   }
 
   onSubmit() {
