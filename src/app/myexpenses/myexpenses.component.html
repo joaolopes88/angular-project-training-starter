@@ -18,12 +18,14 @@
 
 <body>
   <h1>My Expenses</h1>
+  <button><a routerLink="/addexpense">Add Expense</a></button>
   <table class="table table-dark" id="priceTable">
     <thead>
       <tr>
         <th>Name</th>
         <th>Category</th>
         <th>Price(€)</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +33,10 @@
         <td>{{ expense.name }}</td>
         <td>{{ expense.category }}</td>
         <td>{{ expense.price }}€</td>
+        <!--<td>
+          <button (click)="editExpense(expense)">Edit</button>
+          <button (click)="deleteExpense(expense)">Delete</button>
+        </td> -->
       </tr>
     </tbody>
     <tfoot>
@@ -93,4 +99,3 @@
     }
     */</script>
 </body>
-    <button><a routerLink="/addexpense">Add Expense</a></button>
