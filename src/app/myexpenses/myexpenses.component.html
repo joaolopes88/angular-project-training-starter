@@ -33,10 +33,10 @@
         <td>{{ expense.name }}</td>
         <td>{{ expense.category }}</td>
         <td>{{ expense.price }}€</td>
-        <!--<td>
-          <button (click)="editExpense(expense)">Edit</button>
-          <button (click)="deleteExpense(expense)">Delete</button>
-        </td> -->
+        <td>
+          <button routerLink="/editexpenses">Edit</button>
+          <!-- <button (click)="deleteExpense(expense)">Delete</button> -->
+        </td>
       </tr>
     </tbody>
     <tfoot>
