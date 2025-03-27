@@ -11,4 +11,5 @@ export const routes: Routes = [
     {path: "myexpenses", component: MyexpensesComponent},
     {path: "aboutus", component: AboutusComponent},
     {path: "dashboard", component: DashboardComponent}
+    
 ];
