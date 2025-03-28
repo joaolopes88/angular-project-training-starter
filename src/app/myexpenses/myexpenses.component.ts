@@ -10,19 +10,37 @@ import { CommonModule } from '@angular/common';
   styleUrl: './myexpenses.component.css'
 })
 export class MyexpensesComponent implements OnInit {
+  // Array para guardar a lista de despesas
   expenses: Array<{ name: string, price: number, category: string }> = [];
-  selectedCategory: string | null = null;
+
+  // Indica o índice da despesa que está a ser editada; null significa que nenhuma despesa está a ser editada no momento
+  editingIndex: number | null = null;
+
+  router: any;
 
   ngOnInit() {
-    // Load expenses from localStorage or initialize with an empty array
+    // carrega as despesas do localStorage
     const storedExpenses = localStorage.getItem('expenses');
     this.expenses = storedExpenses ? JSON.parse(storedExpenses) : [];
+    //this.router.navigate(['/myexpenses']);
   }
 
   getTotalPrice(): number {
     return this.expenses
-      .filter(expense => !this.selectedCategory || expense.category === this.selectedCategory)
       .reduce((total, expense) => total + expense.price, 0);
   }
 
+  onEdit(index: number) {
+    // leva para a página de edição 
+    this.editingIndex = index;
+    const expense = this.expenses[index];
+    localStorage.setItem('editingExpense', JSON.stringify(expense));
+    window.location.href = '/addexpense'; 
+  }
+
+  onDelete(index: number) {
+    this.expenses.splice(index, 1);
+    // atualiza o localStorage
+    localStorage.setItem('expenses', JSON.stringify(this.expenses));
+  }
 }
