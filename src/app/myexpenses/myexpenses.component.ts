@@ -26,7 +26,7 @@ export class MyexpensesComponent implements OnInit {
   }
 
   onEdit(index: number) {
-    // leva para a página de edição 
+
     const expense = this.expenses[index];
     localStorage.setItem('editingExpense', JSON.stringify(expense));
     window.location.href = '/addexpense'; 
