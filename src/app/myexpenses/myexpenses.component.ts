@@ -13,10 +13,9 @@ export class MyexpensesComponent implements OnInit {
   // Array para guardar a lista de despesas
   expenses: Array<{ name: string, price: number, category: string }> = [];
 
-  // Indica o índice da despesa que está a ser editada; null significa que nenhuma despesa está a ser editada no momento
-  editingIndex: number | null = null;
 
-  router: any;
+
+ 
 
   ngOnInit() {
     // carrega as despesas do localStorage
@@ -32,7 +31,6 @@ export class MyexpensesComponent implements OnInit {
 
   onEdit(index: number) {
     // leva para a página de edição 
-    this.editingIndex = index;
     const expense = this.expenses[index];
     localStorage.setItem('editingExpense', JSON.stringify(expense));
     window.location.href = '/addexpense'; 
