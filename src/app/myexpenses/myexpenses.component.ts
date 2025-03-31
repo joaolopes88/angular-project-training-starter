@@ -13,10 +13,6 @@ export class MyexpensesComponent implements OnInit {
   // Array para guardar a lista de despesas
   expenses: Array<{ name: string, price: number, category: string }> = [];
 
-
-
- 
-
   ngOnInit() {
     // carrega as despesas do localStorage
     const storedExpenses = localStorage.getItem('expenses');
