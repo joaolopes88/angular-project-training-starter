@@ -10,5 +10,5 @@ export const routes: Routes = [
     {path: "", component: HomeComponent},
     {path: "myexpenses", component: MyexpensesComponent},
     {path: "dashboard", component: DashboardComponent},
- 
+    { path: '**', redirectTo: '' }
 ];
