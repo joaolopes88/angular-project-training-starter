@@ -14,7 +14,7 @@ export class MyexpensesComponent implements OnInit {
   expenses: Array<{ name: string, quantity: number, category: string, price: number, date: string, description: string }> = [];
   sortColumn: string = '';
   sortDirection: boolean = true; // true for ascending, false for descending
-
+  
   ngOnInit() {
     // carrega as despesas do localStorage
     const storedExpenses = localStorage.getItem('expenses');

@@ -6,7 +6,8 @@
   <button class="btn btn-sm btn-primary">
     <a routerLink="/addexpense" class="text-white text-decoration-none">Add Expense</a>
   </button>
-  <div class="total-price-icon">
+  
+  <div class="total-price-icon me-3">
     <i class="fas fa-coins" style="color: gold; font-size: 1.5rem;"></i>
     <span class="ms-2" style="font-size: 1.2rem; font-weight: bold;">Total: {{ getTotalPrice() }}€</span>
   </div>
@@ -38,12 +39,6 @@
       </td>
     </tr>
   </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="6">Total:</td>
-      <td id="totalPrice">{{ getTotalPrice() }}€</td>
-    </tr>
-  </tfoot>
 </table>
 <!-- 
 <div>

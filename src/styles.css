@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  body.light-mode .table-dark {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .table-dark {
+    background-color: #343a40;
+    color: #ffffff;
+  }

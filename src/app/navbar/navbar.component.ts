@@ -8,5 +8,17 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  isDarkMode: boolean = false;
+  
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    const body = document.body;
+    if (this.isDarkMode) {
+      body.classList.add('dark-mode');
+      body.classList.remove('light-mode');
+    } else {
+      body.classList.add('light-mode');
+      body.classList.remove('dark-mode');
+    }
+  }
 }
