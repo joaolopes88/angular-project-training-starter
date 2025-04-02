@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
-<h3 class="text-center">ADD Expense</h3>
+<h3 class="text-center">Add/Edit Expense</h3>
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" class="mx-auto" style="max-width: 500px;">
   <div class="border p-3">
     <div class="form-group">
       <label for="expense">Expense <span style="color: red;">*</span>: </label>
-      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name of Expense">
+      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name of Expense" [readonly]="isEditing">
       <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('name')?.invalid && expenseForm.get('name')?.touched">
         <small *ngIf="expenseForm.get('name')?.errors?.['required']">Name is required.</small>
       </div>
@@ -21,17 +21,17 @@
     
     <div class="form-group">
       <label for="category">Category <span style="color: red;">*</span>: </label>
-      <select class="form-control form-control-sm" id="category" formControlName="category">
-        <option>Food</option>
-        <option>Travel</option>
-        <option>Utilities</option>
-        <option>Others</option>
+      <select class="form-control form-control-sm" id="category" formControlName="category" >
+        <option [disabled]="isEditing">Food</option>
+        <option [disabled]="isEditing">Travel</option>
+        <option [disabled]="isEditing">Utilities</option>
+        <option [disabled]="isEditing">Others</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="price">Price (€) <span style="color: red;">*</span>: </label>
-      <input type="number" class="form-control" id="price" formControlName="price" min="1" placeholder="Enter price">
+      <label for="price">Price (Per unit) <span style="color: red;">*</span>: </label>
+      <input type="number" class="form-control" id="price" formControlName="price" min="1" placeholder="Enter price" >
       <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('price')?.invalid && expenseForm.get('price')?.touched">
         <small *ngIf="expenseForm.get('price')?.errors?.['required']">Price is required.</small>
       </div>

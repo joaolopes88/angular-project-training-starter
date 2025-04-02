@@ -38,9 +38,9 @@ export class AddexpenseComponent {
     const expense = this.expenses[index];
     this.expenseForm.patchValue(expense);
 
-    // isto aqui n funfa. é a parte do disable no edit
-    this.expenseForm.get('name')?.disable();
-    this.expenseForm.get('category')?.disable();
+ 
+
+
   }
 
   onSubmit() {
@@ -57,11 +57,6 @@ export class AddexpenseComponent {
     }
 
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
-
-    //isto aqui também n funfa. é a parte do disable no edit
-    this.expenseForm.get('name')?.enable();
-    this.expenseForm.get('category')?.enable();
-
     this.expenseForm.reset();
   }
   ngOnInit() {
