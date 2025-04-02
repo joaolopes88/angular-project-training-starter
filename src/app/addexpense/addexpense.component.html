@@ -4,22 +4,23 @@
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" class="mx-auto" style="max-width: 500px;">
   <div class="border p-3">
     <div class="form-group">
-      <label for="expense">Expense: </label>
+      <label for="expense">Expense <span style="color: red;">*</span>: </label>
       <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name of Expense">
       <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('name')?.invalid && expenseForm.get('name')?.touched">
         <small *ngIf="expenseForm.get('name')?.errors?.['required']">Name is required.</small>
       </div>
     </div>
+
     <div class="form-group">
-      <label for="price">Price (€): </label>
-      <input type="number" class="form-control" id="price" formControlName="price" min="1" placeholder="Enter price">
-      <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('price')?.invalid && expenseForm.get('price')?.touched">
-        <small *ngIf="expenseForm.get('price')?.errors?.['required']">Price is required.</small>
+      <label for="quantity">Quantity <span style="color: red;">*</span>: </label>
+      <input type="number" class="form-control" id="quantity" formControlName="quantity" min="1" placeholder="Enter quantity">
+      <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('quantity')?.invalid && expenseForm.get('quantity')?.touched">
+        <small *ngIf="expenseForm.get('quantity')?.errors?.['required']">Quantity is required.</small>
       </div>
     </div>
     
     <div class="form-group">
-      <label for="category">Category: </label>
+      <label for="category">Category <span style="color: red;">*</span>: </label>
       <select class="form-control form-control-sm" id="category" formControlName="category">
         <option>Food</option>
         <option>Travel</option>
@@ -27,7 +28,40 @@
         <option>Others</option>
       </select>
     </div>
-    <button type="submit" [disabled]="expenseForm.invalid">{{ isEditing ? 'Update' : 'Submit' }}</button>
+
+    <div class="form-group">
+      <label for="price">Price (€) <span style="color: red;">*</span>: </label>
+      <input type="number" class="form-control" id="price" formControlName="price" min="1" placeholder="Enter price">
+      <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('price')?.invalid && expenseForm.get('price')?.touched">
+        <small *ngIf="expenseForm.get('price')?.errors?.['required']">Price is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date <span style="color: red;">*</span>: </label>
+      <input type="date" class="form-control" id="date" formControlName="date" placeholder="Enter date">
+      <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('date')?.invalid && expenseForm.get('date')?.touched">
+        <small *ngIf="expenseForm.get('date')?.errors?.['required']">Date is required.</small>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label for="description">Description (Limit of 50 characters): </label>
+        <textarea 
+          class="form-control" 
+          id="description" 
+          formControlName="description" 
+          rows="3" 
+          maxlength="50"
+          placeholder="Enter a description for the expense">
+        </textarea>
+        <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('description')?.invalid && expenseForm.get('description')?.touched">
+          <small *ngIf="expenseForm.get('description')?.errors?.['maxlength']">Description cannot exceed 50 characters.</small>
+        </div>
+      </div>
+
+      <h6 class="mt-3"> All fields marked with <span style="color: red;">*</span> must be filled.</h6>
+    <button class="mt-3" type="submit" [disabled]="expenseForm.invalid">{{ isEditing ? 'Update' : 'Submit' }}</button>
   </div>
 </form>
 

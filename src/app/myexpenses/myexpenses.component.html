@@ -1,21 +1,37 @@
 <app-navbar></app-navbar>
 
-<h1 style="text-align: center;">My Expenses</h1>
-<button><a routerLink="/addexpense">Add Expense</a></button>
-<table class="table table-dark" id="priceTable">
+<h1 class="text-center mt-3">My Expenses</h1>
+
+<div class="d-flex justify-content-between align-items-center">
+  <button class="btn btn-sm btn-primary">
+    <a routerLink="/addexpense" class="text-white text-decoration-none">Add Expense</a>
+  </button>
+  <div class="total-price-icon">
+    <i class="fas fa-coins" style="color: gold; font-size: 1.5rem;"></i>
+    <span class="ms-2" style="font-size: 1.2rem; font-weight: bold;">Total: {{ getTotalPrice() }}€</span>
+  </div>
+</div>
+
+<table class="table table-dark mt-3" id="priceTable">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price(€)</th>
+      <th (click)="sortTable('name')">Name <span>&#9650;&#9660;</span></th>
+      <th>Quantity</th>
+      <th (click)="sortTable('category')">Category <span>&#9650;&#9660;</span></th>
+      <th (click)="sortTable('price')">Price(Per unit) <span>&#9650;&#9660;</span></th>
+      <th (click)="sortTable('date')">Date <span>&#9650;&#9660;</span></th>
+      <th>Description</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let expense of expenses; let i = index">
       <td>{{ expense.name }}</td>
+      <td>{{ expense.quantity }}</td>
       <td>{{ expense.category }}</td>
       <td>{{ expense.price }}€</td>
+      <td>{{ expense.date }}</td>
+      <td>{{ expense.description }}</td>
       <td>
         <button class="btn btn-sm btn-primary" (click)="onEdit(i)">Edit</button>
         <button class="btn btn-sm btn-danger" (click)="onDelete(i)">Delete</button>
@@ -24,7 +40,7 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="3">Total</td>
+      <td colspan="6">Total:</td>
       <td id="totalPrice">{{ getTotalPrice() }}€</td>
     </tr>
   </tfoot>

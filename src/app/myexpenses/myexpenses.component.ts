@@ -11,7 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class MyexpensesComponent implements OnInit {
   // Array para guardar a lista de despesas
-  expenses: Array<{ name: string, price: number, category: string }> = [];
+  expenses: Array<{ name: string, quantity: number, category: string, price: number, date: string, description: string }> = [];
+  sortColumn: string = '';
+  sortDirection: boolean = true; // true for ascending, false for descending
 
   ngOnInit() {
     // carrega as despesas do localStorage
@@ -22,7 +24,7 @@ export class MyexpensesComponent implements OnInit {
 
   getTotalPrice(): number {
     return this.expenses
-      .reduce((total, expense) => total + expense.price, 0);
+      .reduce((total, expense) => total + (expense.price * expense.quantity), 0);
   }
 
   onEdit(index: number) {
@@ -36,5 +38,29 @@ export class MyexpensesComponent implements OnInit {
     this.expenses.splice(index, 1);
     // atualiza o localStorage
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
+  }
+
+  sortTable(column: keyof typeof this.expenses[0]) {
+    if (this.sortColumn === column) {
+      this.sortDirection = !this.sortDirection; // Toggle sorting direction
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = true; // Default to ascending
+    }
+  
+    this.expenses.sort((a, b) => {
+      const valueA = a[column];
+      const valueB = b[column];
+  
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        return this.sortDirection
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+      } else if (typeof valueA === 'number' && typeof valueB === 'number') {
+        return this.sortDirection ? valueA - valueB : valueB - valueA;
+      } else {
+        return 0;
+      }
+    });
   }
 }
