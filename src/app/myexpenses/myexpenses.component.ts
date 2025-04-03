@@ -20,7 +20,8 @@ export class MyexpensesComponent implements OnInit {
   endDate: string = '';
   sortColumn: string = '';
   sortDirection: boolean = true; // true for ascending, false for descending
-  
+  currentPage: number = 1;
+  itemsPerPage: number = 10; // Maximum rows per pag
   ngOnInit() {
     // carrega as despesas do localStorage
     const storedExpenses = localStorage.getItem('expenses');
@@ -87,5 +88,23 @@ export class MyexpensesComponent implements OnInit {
         return 0;
       }
     });
+    
+  }
+   // Returns the paginated data for the current page
+paginatedExpenses(): Array<any> {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  return this.filteredExpenses.slice(startIndex, startIndex + this.itemsPerPage);
+}
+
+// Calculates the total number of pages
+totalPages(): number {
+  return Math.ceil(this.filteredExpenses.length / this.itemsPerPage);
+}
+
+// Changes the current page
+changePage(page: number): void {
+  if (page > 0 && page <= this.totalPages()) {
+    this.currentPage = page;
   }
 }
+  }

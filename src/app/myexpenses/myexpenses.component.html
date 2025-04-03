@@ -70,7 +70,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let expense of filteredExpenses; let i = index">
+    <tr *ngFor="let expense of paginatedExpenses(); let i = index">
       <td>{{ expense.name }}</td>
       <td>{{ expense.quantity }}</td>
       <td>{{ expense.category }}</td>
@@ -84,3 +84,16 @@
     </tr>
   </tbody>
 </table>
+<nav aria-label="Page navigation" class="d-flex justify-content-center mt-3">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let page of [].constructor(totalPages()); let i = index" [class.active]="i + 1 === currentPage">
+      <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages()">
+      <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+    </li>
+  </ul>
+</nav>
