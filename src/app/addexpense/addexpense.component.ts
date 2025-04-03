@@ -21,7 +21,7 @@ export class AddexpenseComponent {
     this.expenseForm = this.fb.group({
       name: ['', Validators.required],
       quantity: ['', Validators.required],
-      category: [''],
+      category: ['', Validators.required],
       price: ['', Validators.required],
       date: ['', Validators.required],
       description: ['', Validators.maxLength(50)]

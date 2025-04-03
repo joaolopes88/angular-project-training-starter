@@ -1,8 +1,4 @@
-input[readonly], id{
-    background-color: #e0e0e0; 
+input[readonly] {
+    background-color: #747474; 
     cursor: not-allowed; 
-  }
-
-  select option:disabled {
-    color: grey;
   }
