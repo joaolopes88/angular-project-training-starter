@@ -21,15 +21,15 @@
     
     <div class="form-group">
       <label for="category">Category <span style="color: red;">*</span>: </label>
-      <input type="text" class="form-control" id="category" formControlName="category" placeholder="Select or type a category" list="categories" [readonly]="isEditing" />
+      <input type="text" class="form-control" id="category" formControlName="category" placeholder="Select or type a category" list="categories" (input)="validateCategory()" [readonly]="isEditing" />
       <datalist id="categories">
         <option value="Food"></option>
         <option value="Travel"></option>
         <option value="Utilities"></option>
         <option value="Others"></option>
       </datalist>
-      <div class="alert alert-danger" role="alert" *ngIf="expenseForm.get('category')?.invalid && expenseForm.get('category')?.touched">
-        <small *ngIf="expenseForm.get('category')?.errors?.['required']">Category is required.</small>
+      <div class="alert alert-danger" role="alert" *ngIf="categoryError">
+        <small>Category must be one of the predefined options.</small>
       </div>
     </div>
 

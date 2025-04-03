@@ -16,6 +16,8 @@ export class AddexpenseComponent {
   expenses: Array<{ name: string, quantity: number, category: string, price: number, date: string, description: string }> = [];
   isEditing: boolean = false;
   editingIndex: number | null = null;
+  categoryError: boolean = false;
+  predefinedCategories: string[] = ['Food', 'Travel', 'Utilities', 'Others'];
 
   constructor(private fb: FormBuilder) {
     this.expenseForm = this.fb.group({
@@ -46,6 +48,11 @@ export class AddexpenseComponent {
   onSubmit() {
     const expense = this.expenseForm.getRawValue();
 
+    this.validateCategory();
+    if (this.expenseForm.invalid || this.categoryError) {
+      return;
+    }
+
     if (this.isEditing && this.editingIndex !== null) {
       // Update the existing expense
       this.expenses[this.editingIndex] = expense;
@@ -73,6 +80,11 @@ export class AddexpenseComponent {
       this.editingIndex = this.expenses.findIndex(e => e.name === expense.name && e.quantity === expense.quantity && e.category === expense.category && e.price === expense.price && e.date === expense.date && e.description === expense.description );
       localStorage.removeItem('editingExpense'); // Clear the editing expense from localStorage
     }
+  }
+
+  validateCategory(): void {
+    const categoryValue = this.expenseForm.get('category')?.value;
+    this.categoryError = !this.predefinedCategories.includes(categoryValue);
   }
 
   onDelete(index: number) {
