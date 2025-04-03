@@ -1,12 +1,56 @@
 <app-navbar></app-navbar>
 
-<h1 class="text-center mt-3">My Expenses</h1>
+<h1 class="text-center mt-3 mb-5">My Expenses</h1>
 
 <div class="d-flex justify-content-between align-items-center">
-  <button class="btn btn-sm btn-primary">
+  <button class="btn btn-m btn-primary" style="margin-left: 20px;">
     <a routerLink="/addexpense" class="text-white text-decoration-none">Add Expense</a>
   </button>
-  
+  <div class="d-flex flex-grow-1 ms-3">
+    <div class="input-group w-25">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name..."
+        [(ngModel)]="searchTerm"
+        (input)="filterExpenses()"
+      />
+      <span class="input-group-text">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+
+    <div class="input-group w-25 me-3 ms-3">
+      <select
+        class="form-select"
+        [(ngModel)]="selectedCategory"
+        (change)="filterExpenses()"
+      >
+        <option value="">All Categories</option>
+        <option value="Food">Food</option>
+        <option value="Travel">Travel</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+    
+    <div class="d-flex align-items-center">
+      <input
+        type="date"
+        class="form-control me-3"
+        [(ngModel)]="startDate"
+        (change)="filterExpenses()"
+        placeholder="Start Date"
+      />
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="endDate"
+        (change)="filterExpenses()"
+        placeholder="End Date"
+      />
+    </div>
+  </div>
   <div class="total-price-icon me-3">
     <i class="fas fa-coins" style="color: gold; font-size: 1.5rem;"></i>
     <span class="ms-2" style="font-size: 1.2rem; font-weight: bold;">Total: {{ getTotalPrice() }}€</span>
@@ -26,7 +70,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let expense of expenses; let i = index">
+    <tr *ngFor="let expense of filteredExpenses; let i = index">
       <td>{{ expense.name }}</td>
       <td>{{ expense.quantity }}</td>
       <td>{{ expense.category }}</td>
@@ -40,39 +84,3 @@
     </tr>
   </tbody>
 </table>
-<!-- 
-<div>
-  <button onclick="redirectToAdd()">Add</button>
-  <button onclick="redirectToEdit()">Edit</button>
-  <button onclick="toggleFilters()">Filters</button>
-</div>
-
-<div id="filters" style="display: none;">
-  <ul>
-    <li onclick="filterByCategory('category1')">Category 1</li>
-    <li onclick="filterByCategory('category2')">Category 2</li>
-    <li onclick="filterByCategory('category3')">Category 3</li>
-  </ul>
-</div>
-
-<script>
-  let showFilters = false;
-
-  function redirectToAdd() {
-      // Add your redirection logic here
-  }
-
-  function redirectToEdit() {
-      // Add your redirection logic here
-  }
-
-  function toggleFilters() {
-      showFilters = !showFilters;
-      document.getElementById('filters').style.display = showFilters ? 'block' : 'none';
-  }
-
-  function filterByCategory(category) {
-      // Add your filtering logic here
-  }
-</script>
--->
