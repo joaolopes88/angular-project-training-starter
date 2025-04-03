@@ -20,7 +20,11 @@
       </span>
     </div>
 
-    <div class="input-group w-25 me-3 ms-3">
+    <div class="d-flex align-items-center me-3 ms-4">
+      <label>Filter by Category:</label>
+    </div>
+
+    <div class="input-group w-25 me-5">
       <select
         class="form-select"
         [(ngModel)]="selectedCategory"
@@ -32,6 +36,10 @@
         <option value="Utilities">Utilities</option>
         <option value="Others">Others</option>
       </select>
+    </div>
+
+    <div class="d-flex align-items-center me-3 ms-4">
+      <label>Filter by Date (Start/End):</label>
     </div>
     
     <div class="d-flex align-items-center">
@@ -51,7 +59,7 @@
       />
     </div>
   </div>
-  <div class="total-price-icon me-3">
+  <div class="total-price-icon me-3 ms-3">
     <i class="fas fa-coins" style="color: gold; font-size: 1.5rem;"></i>
     <span class="ms-2" style="font-size: 1.2rem; font-weight: bold;">Total: {{ getTotalPrice() }}€</span>
   </div>
