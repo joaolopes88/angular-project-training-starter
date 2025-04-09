@@ -90,21 +90,29 @@ export class MyexpensesComponent implements OnInit {
     });
     
   }
-   // Returns the paginated data for the current page
-paginatedExpenses(): Array<any> {
-  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-  return this.filteredExpenses.slice(startIndex, startIndex + this.itemsPerPage);
-}
-
-// Calculates the total number of pages
-totalPages(): number {
-  return Math.ceil(this.filteredExpenses.length / this.itemsPerPage);
-}
-
-// Changes the current page
-changePage(page: number): void {
-  if (page > 0 && page <= this.totalPages()) {
-    this.currentPage = page;
+  paginatedExpenses(): Array<any> {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.filteredExpenses.slice(startIndex, endIndex);
   }
-}
+  
+
+  // Calculates the total number of pages
+  totalPages(): number {
+    return Math.ceil(this.filteredExpenses.length / this.itemsPerPage);
   }
+
+  changePage(page: number): void {
+    const totalPages = this.totalPages();
+    if (page > 0 && page <= totalPages) {
+      this.currentPage = page;
+    } else if (page > totalPages) {
+      this.currentPage = totalPages; // Prevent going beyond the last page
+    }
+  }
+  onItemsPerPageChange(): void {
+    this.currentPage = 1; // Reset to the first page when items per page changes
+    this.itemsPerPage = Math.max(1, this.itemsPerPage); // Ensure itemsPerPage is at least 1
+  }
+
+}
