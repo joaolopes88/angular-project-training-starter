@@ -71,7 +71,8 @@
       <th (click)="sortTable('name')">Name <span>&#9650;&#9660;</span></th>
       <th>Quantity</th>
       <th (click)="sortTable('category')">Category <span>&#9650;&#9660;</span></th>
-      <th (click)="sortTable('price')">Price(Per unit) <span>&#9650;&#9660;</span></th>
+      <th (click)="sortTable('price')">Price (Per unit) <span>&#9650;&#9660;</span></th>
+      <th>Price (Total Per Item)</th>
       <th (click)="sortTable('date')">Date <span>&#9650;&#9660;</span></th>
       <th>Description</th>
       <th>Actions</th>
@@ -83,6 +84,7 @@
       <td>{{ expense.quantity }}</td>
       <td>{{ expense.category }}</td>
       <td>{{ expense.price }}€</td>
+      <td>{{ expense.price * expense.quantity }}€</td>
       <td>{{ expense.date }}</td>
       <td>{{ expense.description }}</td>
       <td>
