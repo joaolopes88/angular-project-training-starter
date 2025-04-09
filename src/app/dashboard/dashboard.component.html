@@ -5,12 +5,21 @@
       <!-- Pie Chart -->
       <div class="col-md-6 d-flex flex-column align-items-center">
         <h2 class="text-center">Total Expenses by Category (€)</h2>
+        <h6 class="text-center" style="color: rgb(80, 80, 80);">(Click on a Category to Drill Down)</h6>
         <canvas id="pieChart"></canvas>
+        <button class="mt-5 btn btn-sm btn-primary" (click)="drillBackToOriginalPieChart()">Back to Main Chart</button>
       </div>
   
       <!-- Bar Chart -->
       <div class="col-md-6 d-flex flex-column align-items-center">
-        <h2 class="text-center">Top 3 Dates by Total Spent (€)</h2>
+        <h2 class="text-center">Top 5 Dates by Total Spent (€)</h2>
+        <div>
+          <h6 class="text-center" style="color: rgb(80, 80, 80);" for="categoryFilter">Filter by Category:</h6>
+          <select class="form-select" id="categoryFilter" (change)="onCategoryChange($event)">
+            <option value="">All Categories</option>
+            <option *ngFor="let category of getUniqueCategories()" [value]="category">{{ category }}</option>
+          </select>
+        </div>
         <canvas id="barChart"></canvas>
       </div>
     </div>
